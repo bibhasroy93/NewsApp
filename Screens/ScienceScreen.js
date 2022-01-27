@@ -46,10 +46,11 @@ function Science() {
               <Card>
                 <CardImage
                   source={{ uri: item.urlToImage }}
-                  title={data.name}
+                  title={item.source.name}
                 />
                 <CardTitle
                   title={item.title}
+                  subTitle="hello"
                   textStyle={{fontWeight:'bold'}}
                 />
                 <CardContent text={item.description}/>

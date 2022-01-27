@@ -48,7 +48,7 @@ function Home() {
               <Card>
                 <CardImage
                   source={{ uri: item.urlToImage }}
-                  title={data.name}
+                  title={item.source.name}
                 />
                 <CardTitle
                   title={item.title}
