@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, FlatList, ActivityIndicator} from "react-native";
+import { View, FlatList, ActivityIndicator,Share} from "react-native";
 import {
   Card,
   CardTitle,
@@ -25,6 +25,28 @@ function Sports() {
       console.error(error);
     } finally {
       setLoading(false);
+    }
+  };
+
+
+  const onShare = async (shareItem) => {
+    try {
+      const result = await Share.share({
+        title:"NewsApp",
+        url:"https://awesome.contents.com/",
+        message:shareItem,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
     }
   };
 
@@ -55,7 +77,7 @@ function Sports() {
                 />
                 <CardContent text={item.description}/>
                 <CardAction separator={true} inColumn={false}>
-                  <CardButton onPress={() => {}} title="Share" color="green" />
+                  <CardButton onPress={() => {onShare(item.title)}} title="Share" color="green" />
                 </CardAction>
               </Card>
             </View>
